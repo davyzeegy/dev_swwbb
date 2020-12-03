@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1> Wegwijs Burger Belangen Test omgeving voor webRTC</h1>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div>
+            <input placeholder="Voer uw gebruikersnaam in..." 
+            type="text"
+            id = "gebruikersnaam-input" /><br>
+            <button onclick="joinCall()"> Deelnemen aan gesprek</button>
+        </div>
+        <div id="video-call-div">
+            <video muted id="local-video" autoplay></video>
+            <video id="remote-video" autoplay></video>
+            <div class="call-action-div" >
+                <button onclick="muteVideo()">Video dempen</button>
+                <button onclick="muteAudio()">Geluid dempen</button>
+            </div>
+        </div>
+        <script src="./receiver.js"></script>
+
+    </body>
+</html>
