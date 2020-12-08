@@ -1,4 +1,4 @@
-const websocket = new WebSocket("ws://192.168.178.30:3000");
+const websocket = new WebSocket("ws://192.168.178.63:3000");
 
 websocket.onmessage = (event) => { //wanener er een bericht van de andere persoon binnen komt via de websocket (gebeurd via de 'onmessage'  function)
     handleSignallingData(JSON.parse(event.data)) // we parsen hier een JSON object waarin een member/propety "data" staat, en die hebben we nodig om te bepalen of we een answer of een candiate krijgen
@@ -42,7 +42,7 @@ function startCall() { // deze functie word aangeroepen zodra de caller op "Star
         video: {
             frameRate: 24,
             width: {
-                min: 480, ideal: 720, max: 1280
+            min: 480, ideal: 720, max: 1280
                
             },
             aspectRatio: 1.33333
@@ -99,11 +99,15 @@ function startCall() { // deze functie word aangeroepen zodra de caller op "Star
 
 function createAndSendOffer(){ //zie implementatie functie voor beschrijving
     peerConn.createOffer((offer) =>{ //returned een promise genaamd 'offer'. Zodra de offer word gecreeerd zal de peer de ICE kandidaten verzamelen, die kandidaten moeten naar de server gestuurd worden en de server zal het versturen naar de persoon die met ons probeert te connecten, en door de kandiaat te gebruiken kunnen we de verbinding gebruiken
+    console.log("in send data offer: ", offer)
     sendData({  //de offer word hiermee naar de server gestuurd
         type:"store_offer",
-        offer: offer
-    })
+        offer: "offer"
+        //sdp: PeerConn.localDescription
+    }) 
 
+    //console.log("en de offer die we versturen is: ", sdp)
+    
     peerConn.setLocalDescription(offer) // de local descriptor word hiermee geset
 }, (error) => { //callback parameter voor het geval er erorrs optreden bij het creeren van de error
     console.log(error)

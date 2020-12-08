@@ -41,9 +41,10 @@ webSocket.on('request', (req)=> {
             case "store_offer":
                 //console.log(user)
                 console.log("in store offer") //weghalen als test geslaagd
-                if (user == null)
+                if (user == null){
                 console.log("77") 
                     return
+                }
 
                     console.log("heeft data aangeboden")
                 user.offer = data.offer

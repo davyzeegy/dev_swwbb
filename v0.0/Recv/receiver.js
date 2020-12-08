@@ -1,4 +1,4 @@
-const websocket = new WebSocket("ws://192.168.178.30:3000");
+const websocket = new WebSocket("ws://192.168.178.63:3000");
 
 websocket.onmessage = (event) => {
     console.log("call back is: " ,event)
@@ -9,7 +9,7 @@ function handleSignallingData(data) {
     console.log("handle signalling data")
     switch(data.type) {
         case "offer":
-            console.log("case offer")
+           console.log("dit moet de data offer zijn: ", data.offer)
             peerConn.setRemoteDescription(data.offer)
             createAndSendAnswer()
             break
@@ -55,7 +55,7 @@ document.getElementById("video-call-div")
         video: {
             frameRate: 24,
             width: {
-                min: 480, ideal: 720, max: 1280
+            min: 480, ideal: 720, max: 1280
                
             },
             aspectRatio: 1.33333
@@ -74,8 +74,7 @@ document.getElementById("video-call-div")
                     "urls":["stun:stun.l.google.com:19302",   //meerdere STUN servers aangemaakt vóór het geval een andere server met betere ICE kandidaten komt
                     "stun:stun1.l.google.com:19302",
                     "stun:stun2.l.google.com:19302"]
-
-                    
+            
 
                     
                 }
