@@ -1,7 +1,8 @@
 const websocket = new WebSocket("ws://192.168.178.63:3000");
 
 websocket.onmessage = (event) => {
-    console.log("call back is: " ,event)
+    console.log("debug:call back is: " ,event)
+    console.log("debug:dit zal worden geparsed: ", JSON.parse(event.data))
     handleSignallingData(JSON.parse(event.data))
 }
 
@@ -9,7 +10,6 @@ function handleSignallingData(data) {
     console.log("handle signalling data")
     switch(data.type) {
         case "offer":
-           console.log("dit moet de data offer zijn: ", data.offer)
             peerConn.setRemoteDescription(data.offer)
             createAndSendAnswer()
             break

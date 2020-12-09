@@ -82,7 +82,7 @@ function startCall() { // deze functie word aangeroepen zodra de caller op "Star
             return //return niks
         
         sendData({ //on succes zal de kandidate naar de andere persoon worden verstuurd en daarvoor moet e.e.a worden opgeslagen zie type
-            type:"store_candidate", 
+            type: "store_candidate", 
             candidate: e.candidate
         })
         
@@ -101,8 +101,8 @@ function createAndSendOffer(){ //zie implementatie functie voor beschrijving
     peerConn.createOffer((offer) =>{ //returned een promise genaamd 'offer'. Zodra de offer word gecreeerd zal de peer de ICE kandidaten verzamelen, die kandidaten moeten naar de server gestuurd worden en de server zal het versturen naar de persoon die met ons probeert te connecten, en door de kandiaat te gebruiken kunnen we de verbinding gebruiken
     console.log("in send data offer: ", offer)
     sendData({  //de offer word hiermee naar de server gestuurd
-        type:"store_offer",
-        offer: "offer"
+        type: "store_offer",
+        offer: offer
         //sdp: PeerConn.localDescription
     }) 
 
